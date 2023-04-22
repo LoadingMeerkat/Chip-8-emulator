@@ -131,7 +131,7 @@ class Window:
                     sys.exit()
                 self.processInput(event)
             current_time = time.time()
-            if current_time - self.Time_0 > period:
+            if current_time - self.Time_0 > self.period:
                 self.Time_0 = current_time
                 self.update()
                 self.draw()
