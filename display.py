@@ -4,6 +4,7 @@ from core import Chip8
 
 class Window:
     AUGMENTATION = 10
+    period = 0.02
     Time_0 = time.time()
     def __init__(self):
         pygame.init()
@@ -130,7 +131,7 @@ class Window:
                     sys.exit()
                 self.processInput(event)
             current_time = time.time()
-            if current_time - self.Time_0 > 0.005:
+            if current_time - self.Time_0 > period:
                 self.Time_0 = current_time
                 self.update()
                 self.draw()
