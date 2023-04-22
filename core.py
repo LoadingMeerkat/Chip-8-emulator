@@ -372,12 +372,13 @@ class Chip8:
             sprite_byte = self.memory[self.index + row]
             for col in range(8):
                 sprite_pixel = sprite_byte & (0x80 >> col)
-                screen_pixel = self.video[(y_pos + row) * 64 + (x_pos + col)]
+                ptr = ((y_pos + row) * 64 + (x_pos + col)) % (64 * 32)
+                screen_pixel = self.video[ptr]
 
                 if sprite_pixel:
                     if screen_pixel == 0xFFFFFFFF:
                         self.registers[0xF] = 1
-                    self.video[(y_pos + row) * 64 + (x_pos + col)] ^= 0xFFFFFFFF
+                    self.video[ptr] ^= 0xFFFFFFFF
 
     def op_Ex9E(self):
         """

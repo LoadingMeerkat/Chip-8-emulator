@@ -1,9 +1,10 @@
-import pygame, sys
+import pygame, sys, time
 from core import Chip8
 
 
 class Window:
     AUGMENTATION = 10
+    Time_0 = time.time()
     def __init__(self):
         pygame.init()
         self.surface = pygame.display.set_mode((64 * self.AUGMENTATION, 32 * self.AUGMENTATION))
@@ -12,7 +13,7 @@ class Window:
 
         self.chip = Chip8()
         self.keys = self.chip.keypad
-        self.chip.load_rom('rom.ch8')
+        self.chip.load_rom('roms/Pong.ch8')
         self.videobuffer = self.chip.video
         pygame.display.update()
     
@@ -41,7 +42,6 @@ class Window:
 #                y += self.AUGMENTATION
         x = 0
         y = 0
-        pixels = []
         for i in self.videobuffer:
             pixel = pygame.Rect((x,y),(self.AUGMENTATION, self.AUGMENTATION))
             if i == 0:
@@ -52,8 +52,7 @@ class Window:
             if x == 64 * self.AUGMENTATION:
                 x = 0
                 y += self.AUGMENTATION
-            pixels.append(pixel)
-        pygame.display.update(pixels)
+        pygame.display.update()
 
     def processInput(self, event):
         if event.type == pygame.KEYDOWN:
@@ -130,8 +129,11 @@ class Window:
                     pygame.quit()
                     sys.exit()
                 self.processInput(event)
-            self.update()
-            self.draw()
+            current_time = time.time()
+            if current_time - self.Time_0 > 0.005:
+                self.Time_0 = current_time
+                self.update()
+                self.draw()
 
 Display = Window()
 Display.main_loop()
