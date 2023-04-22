@@ -24,23 +24,6 @@ class Window:
         self.videobuffer = self.chip.video
 
     def draw(self):
-#        x = 0
-#        y = 0
-#
-#        for i in self.videobuffer:
-#            if i == 0:
-#                for j in range(self.AUGMENTATION):
-#                    for k in range(self.AUGMENTATION):
-#                        #print(x+j,y+k)
-#                        self.pxarr[x+j,y+k] = pygame.Color((0,0,0))
-#            else:
-#                for j in range(self.AUGMENTATION):
-#                    for k in range(self.AUGMENTATION):
-#                        self.pxarr[x+j,y+k] = pygame.Color((255,255,255))
-#            x += self.AUGMENTATION
-#            if x == 64 * self.AUGMENTATION:
-#                x  = 0
-#                y += self.AUGMENTATION
         x = 0
         y = 0
         for i in self.videobuffer:

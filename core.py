@@ -1,6 +1,4 @@
-import random
-#import os
-#import time
+import random, time, os
 
 class Chip8:
     registers    = [0x0] * 16
@@ -662,10 +660,11 @@ def draw(buffer):
             print('')
 
 
-#a = Chip8()
-#a.load_rom('rom.ch8')
-#while True:
-#    os.system("clear")
-#    a.cycle()
-#    draw(a.video)
-#    time.sleep(0.02)
+if __name__ == "__main__":
+    chip = Chip8()
+    chip.load_rom('rom.ch8')
+    while True:
+       os.system("clear")
+       chip.cycle()
+       draw(a.video)
+    time.sleep(0.02)
